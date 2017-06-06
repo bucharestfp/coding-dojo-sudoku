@@ -1,1 +1,1 @@
-# Coding dojo: A simple Sudoku solver in Haskell
+# Coding Dojo: A Simple Sudoku Solver in Haskell
