@@ -1,19 +1,19 @@
 import Data.List (intercalate)
 
 import qualified Answers
-import Answers
-    (
-      Matrix
-    , Row
-    , Grid
-    , Digit
-    )
+--  import Answers
+--      (
+--        Matrix
+--      , Row
+--      , Grid
+--      , Digit
+--      )
 
 -- Data types
--- type Matrix a = [Row a]
--- type Row a = [a]
--- type Grid = Matrix Digit
--- type Digit = Int
+type Matrix a = [Row a]
+type Row a    = [a]
+type Grid     = Matrix Digit
+type Digit    = Int
 
 -- Printing function
 p :: Grid -> IO()
