@@ -5,6 +5,9 @@ type Row a = [a]
 type Grid = Matrix Digit
 type Digit = Int
 
+boxSize = 2
+gridSize = boxSize * boxSize
+
 solve :: Grid -> [Grid]
 solve = filter valid . completions
 
@@ -14,7 +17,7 @@ completions = expand . choices
 choices :: Grid -> Matrix [Digit]
 choices = map (map choice)
     where
-        choice 0 = [1..4]
+        choice 0 = [1..gridSize]
         choice i = [i]
 
 expand :: Matrix [Digit] -> [Grid]
@@ -43,8 +46,9 @@ boxs :: Matrix a -> Matrix a
 boxs = map ungroup . ungroup . map cols . group . map group
 
 group :: [a] -> [[a]]
-group []       = []
-group (x:y:xs) = [x,y]:group xs
+group [] = []
+group xs = hd:group tl
+    where (hd, tl) = splitAt boxSize xs
 
 ungroup :: [[a]] -> [a]
 ungroup = concat

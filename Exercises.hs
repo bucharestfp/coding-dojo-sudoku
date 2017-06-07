@@ -32,6 +32,10 @@ grid2 = [[0, 3, 0, 1],
          [3, 0, 1, 0],
          [0, 1, 0, 3]]
 
+-- Define grid size
+boxSize = 2
+gridSize = boxSize * boxSize
+
 -- Exercise 1
 solve :: Grid -> [Grid]
 solve = undefined
