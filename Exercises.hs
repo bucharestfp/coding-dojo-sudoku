@@ -1,13 +1,6 @@
 import Data.List (intercalate)
 
 import qualified Answers
---  import Answers
---      (
---        Matrix
---      , Row
---      , Grid
---      , Digit
---      )
 
 -- Data types
 type Matrix a = [Row a]
