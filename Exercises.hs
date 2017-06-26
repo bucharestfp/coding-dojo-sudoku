@@ -3,10 +3,10 @@ import Data.List (intercalate)
 import qualified Answers
 
 -- Data types
-type Matrix a = [Row a]
 type Row a    = [a]
-type Grid     = Matrix Digit
+type Matrix a = [Row a]
 type Digit    = Int
+type Grid     = Matrix Digit
 
 -- Printing function
 p :: Grid -> IO()

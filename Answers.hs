@@ -1,9 +1,9 @@
 module Answers where
 
-type Matrix a = [Row a]
 type Row a = [a]
-type Grid = Matrix Digit
+type Matrix a = [Row a]
 type Digit = Int
+type Grid = Matrix Digit
 
 boxSize = 2
 gridSize = boxSize * boxSize
