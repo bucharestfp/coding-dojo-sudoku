@@ -30,10 +30,12 @@ boxSize = 2
 gridSize = boxSize * boxSize
 
 -- Exercise 1
+-- Given: completions, valid
 solve :: Grid -> [Grid]
 solve = undefined
 
 -- Exercise 2
+-- Given: choices, expand
 completions :: Grid -> [Grid]
 completions = Answers.completions
 
@@ -42,6 +44,7 @@ choices :: Grid -> Matrix [Digit]
 choices = Answers.choices
 
 -- Exercise 4
+-- Given: cp
 expand :: Matrix [Digit] -> [Grid]
 expand = Answers.expand
 
@@ -50,6 +53,7 @@ cp :: [[a]] -> [[a]]
 cp = Answers.cp
 
 -- Exercise 6
+-- Given: nodups, rows, cols, boxs
 valid :: Grid -> Bool
 valid = Answers.valid
 
@@ -66,6 +70,7 @@ cols :: Matrix a -> Matrix a
 cols = Answers.cols
 
 -- Exercise 10
+-- Given: group, ungroup
 boxs :: Matrix a -> Matrix a
 boxs = Answers.boxs
 
