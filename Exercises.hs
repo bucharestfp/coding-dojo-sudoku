@@ -8,9 +8,12 @@ type Matrix a = [Row a]
 type Digit    = Int
 type Grid     = Matrix Digit
 
--- Printing function
-p :: Grid -> IO()
+-- Printing functions
+p :: Grid -> IO ()
 p = putStrLn . unlines . map (intercalate " " . map show)
+
+ps :: [Grid] -> IO [()]
+ps = sequence . map p
 
 -- Some grids
 grid1 :: Grid
