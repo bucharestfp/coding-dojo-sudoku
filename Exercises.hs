@@ -35,52 +35,70 @@ gridSize = boxSize * boxSize
 -- Exercise 1
 -- Given: completions, valid
 solve :: Grid -> [Grid]
-solve = undefined
+solve = filter valid . completions
 
 -- Exercise 2
 -- Given: choices, expand
 completions :: Grid -> [Grid]
-completions = Answers.completions
+completions = expand . choices
 
 -- Exercise 3
 choices :: Grid -> Matrix [Digit]
-choices = Answers.choices
+choices = map $ map choice
+
+choice :: Digit -> [Digit]
+choice 0 = [1..gridSize]
+choice n = [n]
 
 -- Exercise 4
 -- Given: cp
 expand :: Matrix [Digit] -> [Grid]
-expand = Answers.expand
+expand = cp . map cp
 
 -- Exercise 5
 cp :: [[a]] -> [[a]]
-cp = Answers.cp
+cp = foldr (flip cp2) [[]]
+
+cp2 :: [[a]] -> [a] -> [[a]]
+cp2 xss ys = concat $ map (\x -> map (x:) xss) ys
 
 -- Exercise 6
 -- Given: nodups, rows, cols, boxs
 valid :: Grid -> Bool
-valid = Answers.valid
+valid g = all (valid' g) [rows, cols, boxs]
+  --valid' rows g && valid' cols g && valid' boxs g
+  --(and $ map nodups (rows g)) && (and $ map nodups (cols g)) && (and $ map nodups (boxs g))
+
+valid' :: Grid -> (Grid -> Grid) -> Bool
+valid' g f  = all nodups (f g)
 
 -- Exercise 7
 nodups :: Eq a => [a] -> Bool
-nodups = Answers.nodups
+nodups [] = True
+nodups (x : xs) = notElem x xs && nodups xs
 
 -- Exercise 8
 rows :: Matrix a -> Matrix a
-rows = Answers.rows
+rows = id
 
 -- Exercise 9
 cols :: Matrix a -> Matrix a
-cols = Answers.cols
+cols ([] : _) = []
+cols matrix =
+  map head matrix : cols (map tail matrix)
+-- cols [xs]     = map pure xs
+-- cols (xs:xss) = zipWith (:) xs (cols xss)
 
 -- Exercise 10
 -- Given: group, ungroup
 boxs :: Matrix a -> Matrix a
-boxs = Answers.boxs
+boxs = map ungroup . ungroup . map cols . group . map group
 
 -- Exercise 11
 group :: [a] -> [[a]]
-group = Answers.group
+group [] = []
+group xs = take boxSize xs : group (drop boxSize xs)
 
 -- Exercise 12
 ungroup :: [[a]] -> [a]
-ungroup = Answers.ungroup
+ungroup = concat
